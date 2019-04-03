@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>
+            SIGNUP
+        </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+        .w3-sidebar a {font-family: "Roboto", sans-serif}
+        body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+        </style>
+    </head>
+    <body class="w3-content w3-light-grey" style="max-width:1200px">
+       
+        
+        <div class="w3-row-padding w3-light-grey w3-small w3-center">
+                <h1>SIGNUP FORM</h1>
+              <br><br>
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </ul>
+        {% endif %}
+              
+              <form action="{% url 'Auth:signup' %}" method="POST">
+                    {% csrf_token %}
+                <p><input class="w3-input w3-border" type="text" placeholder="First Name" name="user_first_name" required></p>
+                <p><input class="w3-input w3-border" type="text" placeholder="Last Name" name="user_last_name" required></p>
+                <p><input class="w3-input w3-border" type="email" placeholder="Email" name="user_email" required></p>
+                <p><input class="w3-input w3-border" type="password" placeholder="Password" name="user_password" required></p>
+                <button type="submit" class="w3-button w3-block w3-black">Signup</button>
+              </form>
+              <a href="{% url 'Auth:login' %}"><button type="button" class="w3-button w3-block w3-black">LOGIN</button></a>
+            </div>
+        
+    </body>
+</html>

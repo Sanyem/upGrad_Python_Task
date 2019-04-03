@@ -1,0 +1,26 @@
+{% extends 'schedule/main.html' %}
+{% block title %}UPDATE SCHEDULE{% endblock %}
+{% block body %}
+    UPDATE SCHEDULE FORM
+
+    <br><br>
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
+    <form action="{% url 'schedule:update-schedule' schedule.id %}" method="POST">
+            {% csrf_token %}
+        <p><input class="w3-input w3-border" type="text" placeholder="Topic" name="schedule_topic" required></p>
+        <p><input class="w3-input w3-border" type="date" placeholder="Date" name="schedule_date" required></p>
+        <p><input class="w3-input w3-border" type="time" placeholder="Start Time" name="schedule_start_time" required></p>
+        <p><input class="w3-input w3-border" type="time" placeholder="End Time" name="schedule_end_time" required></p>
+        <button type="submit" class="w3-button w3-block w3-black">UPDATE SCHEDULE</button>
+      </form>
+
+    <br><br>
+    <a href="{% url 'schedule:dashboard' %}">Go back to Dashboard</a>
+{% endblock %}

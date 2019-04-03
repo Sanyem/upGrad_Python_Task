@@ -1,0 +1,184 @@
+{% extends 'schedule/main.html' %}
+{% block title %}DASHBOARD{% endblock %}
+{% block body %}
+
+    ALL YOUR UPCOMING SCHEDULES
+    <br><br>
+    {% if upcoming_schedule_list %}
+    
+    <div class="w3-col l2 s6">
+            <div class="w3-container">
+              
+              <p><b>Name</b></p>
+            </div>
+    </div>
+    <div class="w3-col l2 s6">
+            <div class="w3-container">
+              
+              <p><b>Date</b></p>
+            </div>
+    </div>
+    <div class="w3-col l2 s6">
+            <div class="w3-container">
+              
+              <p><b>Start Time</b></p>
+            </div>
+    </div>
+    <div class="w3-col l2 s6">
+            <div class="w3-container">
+              
+              <p><b>End Time</b></p>
+            </div>
+    </div>
+    <div class="w3-col l4 s6">
+            <div class="w3-container">
+              
+              <p><b>Actions</b></p>
+            </div>
+    </div>
+
+
+    {% for schedule in upcoming_schedule_list %}
+    
+    
+    <div class="w3-col l2 s6">
+            <div class="w3-container">
+              
+              <p>{{schedule.topic}}</p>
+            </div>
+    </div>
+    <div class="w3-col l2 s6">
+            <div class="w3-container">
+              
+              <p>{{schedule.date}}</p>
+            </div>
+    </div>
+    <div class="w3-col l2 s6">
+            <div class="w3-container">
+              
+              <p>{{schedule.start_time}}</p>
+            </div>
+    </div>
+    <div class="w3-col l2 s6">
+            <div class="w3-container">
+              
+              <p>{{schedule.end_time}}</p>
+            </div>
+    </div>
+    <div class="w3-col l4 s6">
+            <div class="w3-container">
+              
+              <p>{% if schedule.completed %}
+                    <a href="{% url 'schedule:mark' schedule.id 0 %}">MARK INCOMPLETE</a>
+                {% else %}
+                    <a href="{% url 'schedule:mark' schedule.id 1 %}">MARK COMPLETE</a>
+                {% endif %}
+
+                <a href="{% url 'schedule:update-schedule' schedule.id %}">UPDATE</a>&nbsp;&nbsp;&nbsp;
+                            <a href="{% url 'schedule:delete-schedule' schedule.id %}">DELETE</a>
+            </p>
+            </div>
+    </div>
+
+
+    {% endfor %}
+
+        
+    {% endif %}
+    
+    <br><br><br><br><br>
+    ALL YOUR PREVIOUS SCHEDULES
+    <br><br>
+    {% if previous_schedule_list %}
+
+    <div class="w3-col l1 s6">
+            <div class="w3-container">
+              
+                <p></p>
+            </div>
+    </div>
+    <div class="w3-col l2 s6">
+            <div class="w3-container">
+              
+              <p><b>Name</b></p>
+            </div>
+    </div>
+    <div class="w3-col l2 s6">
+            <div class="w3-container">
+              
+              <p><b>Date</b></p>
+            </div>
+    </div>
+    <div class="w3-col l2 s6">
+            <div class="w3-container">
+              
+              <p><b>Start Time</b></p>
+            </div>
+    </div>
+    <div class="w3-col l2 s6">
+            <div class="w3-container">
+              
+              <p><b>End Time</b></p>
+            </div>
+    </div>
+    <div class="w3-col l3 s6">
+            <div class="w3-container">
+              
+              <p><b>Actions</b></p>
+            </div>
+    </div>
+
+
+    {% for schedule in previous_schedule_list %}
+    
+    <div class="w3-col l1 s6">
+            <div class="w3-container">
+              
+                    <input type="checkbox" disabled {% if schedule.completed %}checked{% endif %}>
+            </div>
+    </div>
+    <div class="w3-col l2 s6">
+            <div class="w3-container">
+              
+              <p>{{schedule.topic}}</p>
+            </div>
+    </div>
+    <div class="w3-col l2 s6">
+            <div class="w3-container">
+              
+              <p>{{schedule.date}}</p>
+            </div>
+    </div>
+    <div class="w3-col l2 s6">
+            <div class="w3-container">
+              
+              <p>{{schedule.start_time}}</p>
+            </div>
+    </div>
+    <div class="w3-col l2 s6">
+            <div class="w3-container">
+              
+              <p>{{schedule.end_time}}</p>
+            </div>
+    </div>
+    <div class="w3-col l3 s6">
+            <div class="w3-container">
+              
+              <p>{% if schedule.completed %}
+                    <a href="{% url 'schedule:mark' schedule.id 0 %}">MARK INCOMPLETE</a>
+                {% else %}
+                    <a href="{% url 'schedule:mark' schedule.id 1 %}">MARK COMPLETE</a>
+                {% endif %}
+
+                <a href="{% url 'schedule:update-schedule' schedule.id %}">UPDATE</a>&nbsp;&nbsp;&nbsp;
+                            <a href="{% url 'schedule:delete-schedule' schedule.id %}">DELETE</a>
+            </p>
+            </div>
+    </div>
+
+
+    {% endfor %}
+
+        
+    {% endif %}
+{% endblock %}
