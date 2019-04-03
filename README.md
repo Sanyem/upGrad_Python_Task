@@ -1,3 +1,5 @@
+REQUIRES INTERNET
+
 # Database
   -- PostgreSQL<br/>
   -- db_name : upgrad_db<br/>
